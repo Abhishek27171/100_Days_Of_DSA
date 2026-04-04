@@ -20,20 +20,21 @@ Use array and front/rear pointers. Enqueue inserts at rear, dequeue removes from
 #include <stdio.h>
 #include <stdlib.h>
 
-// Node structure
-struct Node
+// Define node structure
+struct node
 {
     int data;
-    struct Node *next;
+    struct node *next;
 };
 
-// front and rear pointers
-struct Node *front = NULL, *rear = NULL;
+struct node *front = NULL;
+struct node *rear = NULL;
 
-// enqueue operation
+// Enqueue operation
 void enqueue(int value)
 {
-    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+
     newNode->data = value;
     newNode->next = NULL;
 
@@ -48,10 +49,11 @@ void enqueue(int value)
     }
 }
 
-// display queue
+// Display queue elements
 void display()
 {
-    struct Node *temp = front;
+    struct node *temp = front;
+
     while (temp != NULL)
     {
         printf("%d ", temp->data);
@@ -61,19 +63,16 @@ void display()
 
 int main()
 {
-    int n, x, i;
+    int n, value;
 
-    // input number of elements
     scanf("%d", &n);
 
-    // input elements and enqueue
-    for (i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        scanf("%d", &x);
-        enqueue(x);
+        scanf("%d", &value);
+        enqueue(value);
     }
 
-    // display queue from front to rear
     display();
 
     return 0;
